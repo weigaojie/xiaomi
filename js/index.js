@@ -4,7 +4,7 @@ window.onload=function(){
 	let shopcar=document.getElementsByClassName("shopcar")[0];
 	shop.onmouseenter=function(){
 		shopcar.style.display="block";
-		shopcar.style.height="90px";
+		shopcar.style.height="100px";
 		shopcar.style.transition="0.5s";
 		shopcar.style.boxShadow="0 2px 3px 2px #e5e5e5";
 		shop.style.background="white";
@@ -135,9 +135,8 @@ window.onload=function(){
 	let back=document.getElementsByClassName("next")[0];
 	let btns=document.getElementsByClassName("btns")[0];
 	let son1=btns.getElementsByClassName("son");
-	console.log(forwards,back,btns,son1);
 	let num=0;
-	let t=setInterval(move,1000);
+	let t=setInterval(move,1500);
 	function move(){
 		num++;
 		if(num==a.length){
@@ -166,7 +165,7 @@ window.onload=function(){
 		clearInterval(t);
 	}
 	banner.onmouseleave=function(){
-		t=setInterval(move,1000);
+		t=setInterval(move,1500);
 	}
 	forwards.onclick=function(){
 		move1();
@@ -228,22 +227,22 @@ window.onload=function(){
 
 
 	//logo部分选项卡
-	// let white=document.getElementsByClassName("white")[0];
-	// let nav6=white.getElementsByClassName("nav")[0];
-	// let a1=nav6.getElementsByTagName("a");
-	// let xxknr=document.getElementsByClassName("xxknr");
-	// for(let i=0;i<8;i++){
-	// 	a1[i].onmouseenter=function(){
-	// 		xxknr[i].style.display="block";
-	// 		xxknr[i].style.height="230px";
-	// 		xxknr[i].style.transition="0.5s";
-	// 	}
-	// 	a1[i].onmouseleave=function(){
-	// 		xxknr[i].style.display=" ";
-	// 		xxknr[i].style.height="0";
-	// 		xxknr[i].style.transition="0.5s";
-	// 	}
-	// }
+	let white=document.getElementsByClassName("white")[0];
+	let nav6=white.getElementsByClassName("nav")[0];
+	let a1=nav6.getElementsByTagName("a");
+	let xxknr=document.getElementsByClassName("xxknr");
+	for(let i=0;i<8;i++){
+		a1[i].onmouseenter=function(){
+			xxknr[i].style.display="block";
+			xxknr[i].style.height="230px";
+			xxknr[i].style.transition="0.5s";
+		}
+		a1[i].onmouseleave=function(){
+			xxknr[i].style.display="none";
+			xxknr[i].style.height="0";
+			xxknr[i].style.transition="0.5s";
+		}
+	}
 
 
 
@@ -358,4 +357,45 @@ window.onload=function(){
     box1.forEach(function(element){
         lbt(element);
     })
+
+
+
+	//倒计时
+	let box2=document.querySelectorAll(".pic1 .box");
+	djh();
+	setInterval(djh,1000);
+	function djh(){
+		let arr=fn();
+		box2.forEach(function(element,index){
+			element.innerText=arr[index];
+		})
+	}
+	function fn(){
+		let now=new Date;
+		let future=new Date(2018,6,26,18);
+		let time=Math.floor((future-now)/1000);
+		let arr=[];
+		let hour=Math.floor(time/(60*60));
+		if(hour<10){
+			arr.push("0"+hour);
+		}
+		else{
+			arr.push(hour);
+		}
+		let fen=Math.floor(time/(60));
+		if(fen<10){
+			arr.push("0"+fen);
+		}
+		else{
+			arr.push(fen);
+		}
+		let miao=Math.floor(time%60);
+		if(miao<10){
+			arr.push("0"+miao);
+		}
+		else{
+			arr.push(miao);
+		}
+		return arr;
+	}
 }
